@@ -1,0 +1,90 @@
+[
+  {
+    "slug": "taj-mahal",
+    "file": "/images/heritage/taj-mahal.jpg",
+    "kb": 559,
+    "author": "Yann ; edited by Jim Carter",
+    "license": "CC BY-SA 4.0",
+    "commons": "https://commons.wikimedia.org/wiki/File:Taj_Mahal_(Edited).jpeg"
+  },
+  {
+    "slug": "khajuraho",
+    "file": "/images/heritage/khajuraho.jpg",
+    "kb": 622,
+    "author": "PLBechly",
+    "license": "CC BY-SA 4.0",
+    "commons": "https://commons.wikimedia.org/wiki/File:1_Khajuraho.jpg"
+  },
+  {
+    "slug": "konark",
+    "file": "/images/heritage/konark.jpg",
+    "kb": 680,
+    "author": "Subham9423",
+    "license": "CC BY-SA 4.0",
+    "commons": "https://commons.wikimedia.org/wiki/File:Konarka_Temple.jpg"
+  },
+  {
+    "slug": "hampi",
+    "file": "/images/heritage/hampi.jpg",
+    "kb": 482,
+    "author": "iMahesh",
+    "license": "CC BY-SA 4.0",
+    "commons": "https://commons.wikimedia.org/wiki/File:Wide_angle_of_Galigopuram_of_Virupaksha_Temple%2C_Hampi_(04)_(cropped).jpg"
+  },
+  {
+    "slug": "ajanta",
+    "file": "/images/heritage/ajanta.jpg",
+    "kb": 311,
+    "author": "No machine-readable author provided. Soman assumed (based on copyright claims).",
+    "license": "CC BY 2.5",
+    "commons": "https://commons.wikimedia.org/wiki/File:Ajanta_(63).jpg"
+  },
+  {
+    "slug": "qutb-minar",
+    "file": "/images/heritage/qutb-minar.jpg",
+    "kb": 952,
+    "author": "Wasir kasab",
+    "license": "CC BY 4.0",
+    "commons": "https://commons.wikimedia.org/wiki/File:Qutb_Minar_2022.jpg"
+  },
+  {
+    "slug": "sanchi",
+    "file": "/images/heritage/sanchi.jpg",
+    "kb": 1179,
+    "author": "Biswarup Ganguly",
+    "license": "CC BY 3.0",
+    "commons": "https://commons.wikimedia.org/wiki/File:East_Gateway_-_Stupa_1_-_Sanchi_Hill_2013-02-21_4398.JPG"
+  },
+  {
+    "slug": "sarnath",
+    "file": "/images/heritage/sarnath.jpg",
+    "kb": 282,
+    "author": "Yusuke Kawasaki",
+    "license": "CC BY 2.0",
+    "commons": "https://commons.wikimedia.org/wiki/File:Ancient_Buddhist_monasteries_near_Dhamekh_Stupa_Monument_Site%2C_Sarnath.jpg"
+  },
+  {
+    "slug": "mahabalipuram",
+    "file": "/images/heritage/mahabalipuram.jpg",
+    "kb": 285,
+    "author": "https://www.flickr.com/photos/pnglife/",
+    "license": "CC BY-SA 2.0",
+    "commons": "https://commons.wikimedia.org/wiki/File:Mamallapuram_view.jpg"
+  },
+  {
+    "slug": "red-fort",
+    "file": "/images/heritage/red-fort.jpg",
+    "kb": 457,
+    "author": "PerSona77",
+    "license": "CC BY-SA 3.0",
+    "commons": "https://commons.wikimedia.org/wiki/File:Delhi_fort.jpg"
+  },
+  {
+    "slug": "meenakshi",
+    "file": "/images/heritage/meenakshi.jpg",
+    "kb": 603,
+    "author": "எஸ்ஸார்",
+    "license": "CC BY 3.0",
+    "commons": "https://commons.wikimedia.org/wiki/File:An_aerial_view_of_Madurai_city_from_atop_of_Meenakshi_Amman_temple.jpg"
+  }
+]
