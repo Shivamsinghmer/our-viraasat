@@ -1,0 +1,174 @@
+/* Typer — styling for the character reveal. The engine swaps each character's
+   class between these states; this is what makes a state read as a solid pill,
+   an outlined pill, an accent block and so on. Adjacent same-state characters
+   round only at the two outer ends, so a run reads as one continuous bar.
+
+   Themed off custom properties, mapped here onto the flag: navy ink, white page,
+   saffron accent, and green on the outline state so all three colours appear. */
+
+[data-typer] {
+	--typer-fg: #000080;
+	--typer-bg: #ffffff;
+	--typer-accent: #ff9933;
+	--typer-accent-ink: #000080;
+	--typer-outline: #138808;
+	--typer-radius: 5px;
+}
+
+/* Over a photograph the palette inverts: white ink, navy knockout inside the
+   white pills, saffron accents, white outlines. Navy ink would vanish. */
+[data-typer].typer-on-image {
+	--typer-fg: #ffffff;
+	--typer-bg: #000080;
+	--typer-accent: #ff9933;
+	--typer-accent-ink: #000080;
+	--typer-outline: #ffffff;
+}
+
+/* Carries hero copy over bright skies and pale marble without washing the
+   image behind it. */
+.text-over-image {
+	text-shadow:
+		0 1px 2px rgb(0 0 0 / 0.55),
+		0 2px 14px rgb(0 0 0 / 0.45);
+}
+
+/* None of the three theme faces cover Devanagari, so the verse would fall back
+   to whatever the OS happens to have. */
+.font-devanagari {
+	font-family: "Noto Serif Devanagari", "Nirmala UI", serif;
+	font-feature-settings: "kern" 1;
+}
+
+/* Before the reveal runs the whole line is invisible. */
+[data-typer][data-typer-type="initial"] {
+	opacity: 0;
+}
+
+[data-typer] .word {
+	white-space: pre;
+}
+
+[data-typer] .word .char {
+	box-sizing: content-box;
+	display: inline-block;
+	color: var(--typer-fg);
+	background: transparent;
+	transition: none;
+}
+
+[data-typer] .word .char.charInit {
+	color: transparent;
+}
+
+/* Solid pill: ink block, knockout text. Adjacent fills merge into one bar. */
+[data-typer] .word .char.charFill {
+	color: var(--typer-bg);
+	background: var(--typer-fg);
+	border-radius: var(--typer-radius);
+}
+[data-typer] .word .char.charFill:has(+ .charFill) {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+[data-typer] .word .char.charFill + .charFill {
+	border-radius: 0;
+}
+[data-typer] .word .char.charFill + .charFill:last-child,
+[data-typer] .word .char.charFill + .charFill:has(+ :not(.charFill)) {
+	border-radius: 0 var(--typer-radius) var(--typer-radius) 0;
+}
+
+/* Inverse: ink knockout, no rounding. */
+[data-typer] .word .char.charInverse {
+	color: var(--typer-bg);
+	background: var(--typer-fg);
+}
+
+/* Accent: coloured letters on the page, no pill. */
+[data-typer] .word .char.charAccent {
+	color: var(--typer-accent);
+	background: transparent;
+}
+
+/* Accent inverse: a saffron pill with knockout text. Merges like the ink fill. */
+[data-typer] .word .char.charAccentInverse {
+	color: var(--typer-accent-ink);
+	background: var(--typer-accent);
+	border-radius: var(--typer-radius);
+}
+[data-typer] .word .char.charAccentInverse:has(+ .charAccentInverse) {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+[data-typer] .word .char.charAccentInverse + .charAccentInverse {
+	border-radius: 0;
+}
+[data-typer] .word .char.charAccentInverse + .charAccentInverse:last-child,
+[data-typer]
+	.word
+	.char.charAccentInverse
+	+ .charAccentInverse:has(+ :not(.charAccentInverse)) {
+	border-radius: 0 var(--typer-radius) var(--typer-radius) 0;
+}
+
+/* Accent fill: a briefly solid block of pure saffron. */
+[data-typer] .word .char.charAccentFill {
+	color: var(--typer-accent);
+	background: var(--typer-accent);
+}
+
+/* Outlined pill: a green border box around ink text. A run merges by dropping
+   the inner vertical borders rather than the fill. */
+[data-typer] .word .char.charBorder {
+	position: relative;
+	color: var(--typer-fg);
+}
+[data-typer] .word .char.charBorder::after {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	inset: 0;
+	border: 1px solid var(--typer-outline);
+	border-radius: var(--typer-radius);
+}
+[data-typer] .word .char.charBorder:has(+ .charBorder)::after {
+	border-right: 1px solid transparent;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+[data-typer] .word .char.charBorder + .charBorder::after {
+	border-left: 1px solid transparent;
+	border-right: 1px solid transparent;
+	border-radius: 0;
+}
+[data-typer] .word .char.charBorder + .charBorder:last-child::after,
+[data-typer]
+	.word
+	.char.charBorder
+	+ .charBorder:has(+ :not(.charBorder))::after {
+	border-left: 1px solid transparent;
+	border-right: 1px solid var(--typer-outline);
+	border-radius: 0 var(--typer-radius) var(--typer-radius) 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-typer][data-typer-type="initial"] {
+		opacity: 1;
+	}
+	[data-typer] .word .char.charInit {
+		color: var(--typer-fg);
+	}
+}
+
+/* Custom cursor: `cursor` inherits, but buttons and links set their own
+   `cursor: pointer`, which beats an inherited `none` and leaves the OS arrow
+   showing alongside the custom one. This has to out-specify all of them.
+   The class is toggled by UserCursor, so touch devices keep their native cursor. */
+html.has-custom-cursor,
+html.has-custom-cursor *,
+html.has-custom-cursor *::before,
+html.has-custom-cursor *::after {
+	/* biome-ignore lint/complexity/noImportantStyles: must beat every element's own cursor:pointer, which is exactly the bug this fixes */
+	cursor: none !important;
+}
