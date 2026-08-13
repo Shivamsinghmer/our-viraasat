@@ -33,7 +33,16 @@ const MIN_THETA = -PI * 0.5 + 0.001;
 const MAX_THETA = PI * 0.5 - 0.001;
 const VISIBILITY_MIN_DOT = 0.24;
 const VISIBILITY_MAX_DOT = 0.48;
-const MAX_SHADER_MARKERS = 128;
+/**
+ * Kept small on purpose. Each element of a uniform array occupies a full vec4
+ * slot, so `uMarkerData[N]` plus `uMarkerColor[N]` costs 2N of the fragment
+ * shader's budget. At N=128 that was ~270 vec4 — fine against the 1024+ desktop
+ * GPUs report, but over the 224 that Adreno and Mali commonly cap
+ * MAX_FRAGMENT_UNIFORM_VECTORS at. Past the cap the program fails to link, and
+ * because OGL only console.warns on link failure the globe rendered as an empty
+ * square on those phones. No caller comes close to 16 markers.
+ */
+const MAX_SHADER_MARKERS = 16;
 const SHADER_MARKER_SIZE_SCALE = 0.5;
 const MIN_SHADER_MARKER_SIZE = 0.003;
 const MAX_SHADER_MARKER_SIZE = 0.06;
@@ -671,6 +680,24 @@ export function GlobeScene({
 			depthWrite: false,
 		});
 		atmosphereProgram.setBlendFunc(gl.SRC_ALPHA, gl.ONE);
+
+		// OGL console.warns and returns when a program fails to link, so a shader
+		// that is too big for the device draws nothing and says nothing useful.
+		// Report it against the device's actual limit, which is the number that
+		// explains the failure.
+		for (const [name, program] of [
+			["globe", globeProgram],
+			["atmosphere", atmosphereProgram],
+		] as const) {
+			if (gl.getProgramParameter(program.program, gl.LINK_STATUS)) continue;
+			console.error(
+				`GlobeScene: the ${name} program failed to link. ` +
+					`MAX_FRAGMENT_UNIFORM_VECTORS on this device is ${gl.getParameter(
+						gl.MAX_FRAGMENT_UNIFORM_VECTORS,
+					)}.`,
+				gl.getProgramInfoLog(program.program),
+			);
+		}
 
 		const globeMesh = new Mesh(gl, {
 			geometry,
