@@ -42,6 +42,12 @@
   --primary: #ff9933;
   --primary-foreground: #ffffff;
 
+  /* Saffron at a weight that can carry text. The brand saffron is a fill
+     colour: #ff9933 on white measures 2.13:1, so link and label text set in it
+     fails WCAG AA outright. This is the same hue driven down to a 5.4:1 ink,
+     for type that has to be read rather than seen. */
+  --primary-strong: #9a5b00;
+
   /* Secondary = Green */
   --secondary: #138808;
   --secondary-foreground: #ffffff;
@@ -138,6 +144,8 @@
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.985 0 0);
   --primary-foreground: oklch(0.21 0.006 285.885);
+  /* Inverted: on a dark ground the saffron has to come up, not down. */
+  --primary-strong: #ffb066;
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.274 0.006 286.033);
@@ -186,6 +194,7 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-strong: var(--primary-strong);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);

@@ -48,6 +48,12 @@ const menuGroups: MenuGroup[] = [
  * those get the transition sweep instead, and the nav stays put once it has
  * arrived.
  */
+/**
+ * Ceiling on the entry sequence. The timeline itself runs a shade under five
+ * seconds; this only ever fires when it has stopped running at all.
+ */
+const INTRO_CEILING_MS = 8000;
+
 export function SitePreloader() {
 	const [done, setDone] = useState(false);
 
@@ -58,6 +64,53 @@ export function SitePreloader() {
 		document.body.style.overflow = "hidden";
 		return () => {
 			document.body.style.overflow = previous;
+		};
+	}, [done]);
+
+	/**
+	 * The preloader hands over on the `onComplete` of a GSAP timeline, and GSAP
+	 * advances off requestAnimationFrame. A tab that is backgrounded or throttled
+	 * mid-intro stops getting frames, the timeline freezes, `onComplete` never
+	 * arrives — and because this overlay is opaque, `z-999`, without
+	 * `pointer-events-none`, and holds `body { overflow: hidden }` the whole time,
+	 * the site is left unclickable and unscrollable. That is the hang.
+	 *
+	 * So the hand-over is guaranteed by two things that do not need a frame: a
+	 * ceiling, and going to the background — where the animation is not being
+	 * watched anyway, so there is nothing to cut short.
+	 */
+	useEffect(() => {
+		if (done) return;
+
+		const finish = () => {
+			markIntroDone();
+			setDone(true);
+		};
+
+		// Asking for reduced motion should skip the sequence outright rather than
+		// sit through it, which PRODUCT.md already claims happens.
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+			finish();
+			return;
+		}
+
+		// Opened in a background tab, which is common enough to be the ordinary
+		// case rather than an edge one: there were never any frames to begin with,
+		// so there is no change event coming and nothing to wait for.
+		if (document.visibilityState === "hidden") {
+			finish();
+			return;
+		}
+
+		const ceiling = window.setTimeout(finish, INTRO_CEILING_MS);
+		const onVisibilityChange = () => {
+			if (document.visibilityState === "hidden") finish();
+		};
+		document.addEventListener("visibilitychange", onVisibilityChange);
+
+		return () => {
+			window.clearTimeout(ceiling);
+			document.removeEventListener("visibilitychange", onVisibilityChange);
 		};
 	}, [done]);
 

@@ -516,6 +516,12 @@ export function Fake3DImageScene({
 					gl.deleteTexture(texture.texture);
 				}
 			}
+			// The other three scenes on this site drop their context on unmount and
+			// this one did not, so every visit to the home page left a live context
+			// behind. Browsers cap these at around sixteen and force-lose the oldest
+			// once past it, which shows up as the hero going blank and the tab
+			// stuttering after a few laps through the nav.
+			gl.getExtension("WEBGL_lose_context")?.loseContext();
 		};
 	}, []);
 

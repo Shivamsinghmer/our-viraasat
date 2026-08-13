@@ -153,10 +153,41 @@ export function PageTransition() {
 		};
 
 		let tl: gsap.core.Timeline | null = null;
+		let navTimer = 0;
+		let failsafeTimer = 0;
+
+		/**
+		 * Perform the deferred navigation. Idempotent — whichever of the timer,
+		 * the timeline or the visibility handler gets here first wins, and the
+		 * rest find nothing to do.
+		 */
+		const flushPendingNav = () => {
+			const target = pendingNavRef.current;
+			if (!target) return;
+			pendingNavRef.current = null;
+			router.navigate({ to: target });
+		};
+
+		/**
+		 * Put the curtain away without waiting on a frame. The timeline is killed
+		 * first and deliberately: a starved timeline still holds the backdrop at
+		 * opacity 1, and would re-assert it on the next tick to arrive, painting
+		 * the page out from under a curtain that was supposed to be gone.
+		 */
+		const clearCurtain = () => {
+			tl?.kill();
+			tl = null;
+			sweepingRef.current = false;
+			stopLoop();
+			const backdrop = backdropRef.current;
+			if (backdrop) gsap.set(backdrop, { opacity: 0 });
+		};
 
 		sweepRef.current = () => {
 			const backdrop = backdropRef.current;
 			tl?.kill();
+			window.clearTimeout(navTimer);
+			window.clearTimeout(failsafeTimer);
 			uniforms.uProgress.value = 0;
 			uniforms.uFade.value = 1;
 			sweepingRef.current = true;
@@ -166,8 +197,28 @@ export function PageTransition() {
 				gsap.set(backdrop, { opacity: 1 });
 			}
 
+			// The navigation runs on a timer, not on the timeline. GSAP advances off
+			// rAF, and rAF stops dead in a backgrounded or throttled tab — so a click
+			// made just before the tab lost focus used to leave the opaque backdrop
+			// up with the route never swapping, which reads as the site hanging. A
+			// timer is throttled in the background but still fires. The backdrop is
+			// already opaque by this point, so the swap stays hidden either way.
+			navTimer = window.setTimeout(flushPendingNav, SWEEP_MS / 2);
+
+			// And if the timeline never reaches onComplete — killed mid-flight,
+			// starved of frames, or the context went away — take the curtain down
+			// anyway rather than leave the page behind it.
+			failsafeTimer = window.setTimeout(
+				() => {
+					flushPendingNav();
+					clearCurtain();
+				},
+				SWEEP_MS + FADE_MS + 400,
+			);
+
 			tl = gsap.timeline({
 				onComplete: () => {
+					window.clearTimeout(failsafeTimer);
 					sweepingRef.current = false;
 					stopLoop();
 				},
@@ -181,18 +232,10 @@ export function PageTransition() {
 			});
 
 			// Navigate when the band is centred — backdrop covers the page, so the
-			// content swap is invisible.
-			tl.call(
-				() => {
-					const target = pendingNavRef.current;
-					if (target) {
-						pendingNavRef.current = null;
-						router.navigate({ to: target });
-					}
-				},
-				[],
-				SWEEP_MS / 2000,
-			);
+			// content swap is invisible. This is the path that runs when frames are
+			// flowing normally; it beats the timer above by a hair and makes it a
+			// no-op, which keeps the swap tied to the visual when the visual exists.
+			tl.call(flushPendingNav, [], SWEEP_MS / 2000);
 
 			// Fade the sweep out in the second half.
 			tl.to(
@@ -211,13 +254,29 @@ export function PageTransition() {
 			}
 		};
 
+		// Going to the background is the case that used to strand a navigation:
+		// rAF stops, the timeline freezes wherever it was, and the click is lost.
+		// Commit it immediately instead — nobody is watching the sweep.
+		const onVisibilityChange = () => {
+			if (document.visibilityState !== "hidden") return;
+			flushPendingNav();
+			tl?.progress(1);
+			window.clearTimeout(navTimer);
+			window.clearTimeout(failsafeTimer);
+			clearCurtain();
+		};
+
 		window.addEventListener("resize", resize);
+		document.addEventListener("visibilitychange", onVisibilityChange);
 
 		return () => {
 			sweepRef.current = null;
 			sweepingRef.current = false;
+			window.clearTimeout(navTimer);
+			window.clearTimeout(failsafeTimer);
 			tl?.kill();
 			stopLoop();
+			document.removeEventListener("visibilitychange", onVisibilityChange);
 			window.removeEventListener("resize", resize);
 			geometry.remove();
 			program.remove();
