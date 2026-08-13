@@ -1,0 +1,429 @@
+[
+	{
+		"slug": "agra-fort",
+		"name": "Agra Fort",
+		"category": "Agra Fort",
+		"count": 5
+	},
+	{
+		"slug": "ajanta",
+		"name": "Ajanta Caves",
+		"category": "Ajanta Caves",
+		"count": 6
+	},
+	{
+		"slug": "ellora",
+		"name": "Ellora Caves",
+		"category": "Ellora Caves",
+		"count": 6
+	},
+	{
+		"slug": "taj-mahal",
+		"name": "Taj Mahal",
+		"category": "Taj Mahal",
+		"count": 6
+	},
+	{
+		"slug": "mahabalipuram",
+		"name": "Mahabalipuram",
+		"category": "Mahabalipuram",
+		"count": 5
+	},
+	{
+		"slug": "konark",
+		"name": "Konark Sun Temple",
+		"category": "Konark Sun Temple",
+		"count": 5
+	},
+	{
+		"slug": "goa-churches",
+		"name": "Churches and Convents of Goa",
+		"category": "Churches and convents of Goa",
+		"search": "Basilica of Bom Jesus Goa",
+		"count": 5
+	},
+	{
+		"slug": "fatehpur-sikri",
+		"name": "Fatehpur Sikri",
+		"category": "Fatehpur Sikri",
+		"count": 5
+	},
+	{
+		"slug": "hampi",
+		"name": "Hampi",
+		"category": "Hampi",
+		"count": 6
+	},
+	{
+		"slug": "khajuraho",
+		"name": "Khajuraho",
+		"category": "Khajuraho",
+		"count": 5
+	},
+	{
+		"slug": "elephanta",
+		"name": "Elephanta Caves",
+		"category": "Elephanta Caves",
+		"count": 5
+	},
+	{
+		"slug": "chola-temples",
+		"name": "Great Living Chola Temples",
+		"category": "Brihadisvara Temple, Thanjavur",
+		"search": "Brihadisvara Temple Thanjavur",
+		"count": 5
+	},
+	{
+		"slug": "pattadakal",
+		"name": "Pattadakal",
+		"category": "Pattadakal",
+		"count": 5
+	},
+	{
+		"slug": "sanchi",
+		"name": "Sanchi",
+		"category": "Sanchi",
+		"count": 5
+	},
+	{
+		"slug": "humayuns-tomb",
+		"name": "Humayun's Tomb",
+		"category": "Humayun's Tomb",
+		"count": 5
+	},
+	{
+		"slug": "qutb-minar",
+		"name": "Qutb Minar",
+		"category": "Qutb Minar",
+		"count": 5
+	},
+	{
+		"slug": "mountain-railways",
+		"name": "Mountain Railways of India",
+		"category": "Darjeeling Himalayan Railway",
+		"search": "Nilgiri Mountain Railway",
+		"count": 5
+	},
+	{
+		"slug": "bodh-gaya",
+		"name": "Mahabodhi Temple Complex",
+		"category": "Mahabodhi Temple",
+		"count": 5
+	},
+	{
+		"slug": "bhimbetka",
+		"name": "Rock Shelters of Bhimbetka",
+		"category": "Bhimbetka rock shelters",
+		"count": 5
+	},
+	{
+		"slug": "chhatrapati-shivaji-terminus",
+		"name": "Chhatrapati Shivaji Terminus",
+		"category": "Chhatrapati Shivaji Terminus",
+		"count": 5
+	},
+	{
+		"slug": "champaner-pavagadh",
+		"name": "Champaner-Pavagadh",
+		"category": "Champaner-Pavagadh Archaeological Park",
+		"count": 5
+	},
+	{
+		"slug": "red-fort",
+		"name": "Red Fort Complex",
+		"category": "Red Fort (Delhi)",
+		"count": 5
+	},
+	{
+		"slug": "jantar-mantar",
+		"name": "Jantar Mantar, Jaipur",
+		"category": "Jantar Mantar (Jaipur)",
+		"count": 5
+	},
+	{
+		"slug": "hill-forts-rajasthan",
+		"name": "Hill Forts of Rajasthan",
+		"category": "Chittorgarh Fort",
+		"search": "Kumbhalgarh fort",
+		"count": 5
+	},
+	{
+		"slug": "rani-ki-vav",
+		"name": "Rani-ki-Vav",
+		"category": "Rani ki vav",
+		"count": 5
+	},
+	{
+		"slug": "nalanda",
+		"name": "Nalanda Mahavihara",
+		"category": "Nalanda",
+		"count": 5
+	},
+	{
+		"slug": "chandigarh-capitol",
+		"name": "Capitol Complex, Chandigarh",
+		"category": "Capitol Complex, Chandigarh",
+		"search": "Palace of Assembly Chandigarh",
+		"count": 4
+	},
+	{
+		"slug": "ahmadabad",
+		"name": "Historic City of Ahmadabad",
+		"category": "Historic City of Ahmadabad",
+		"search": "Sidi Saiyyed Mosque Ahmedabad",
+		"count": 5
+	},
+	{
+		"slug": "mumbai-ensembles",
+		"name": "Victorian Gothic and Art Deco Ensembles of Mumbai",
+		"category": "Victorian and Art Deco Ensemble of Mumbai",
+		"search": "Art Deco buildings Marine Drive Mumbai",
+		"count": 5
+	},
+	{
+		"slug": "jaipur-city",
+		"name": "Jaipur City",
+		"category": "Hawa Mahal",
+		"search": "Jaipur city palace",
+		"count": 5
+	},
+	{
+		"slug": "ramappa-temple",
+		"name": "Kakatiya Rudreshwara (Ramappa) Temple",
+		"category": "Ramappa Temple",
+		"count": 5
+	},
+	{
+		"slug": "dholavira",
+		"name": "Dholavira",
+		"category": "Dholavira",
+		"count": 5
+	},
+	{
+		"slug": "santiniketan",
+		"name": "Santiniketan",
+		"category": "Santiniketan",
+		"count": 4
+	},
+	{
+		"slug": "hoysala-temples",
+		"name": "Sacred Ensembles of the Hoysalas",
+		"category": "Chennakeshava Temple, Belur",
+		"search": "Hoysaleswara Temple Halebidu",
+		"count": 5
+	},
+	{
+		"slug": "moidams",
+		"name": "Moidams of the Ahom Dynasty",
+		"category": "Moidams",
+		"search": "Charaideo Maidam",
+		"count": 4
+	},
+	{
+		"slug": "maratha-forts",
+		"name": "Maratha Military Landscapes of India",
+		"category": "Raigad Fort",
+		"search": "Sindhudurg fort",
+		"count": 5
+	},
+	{
+		"slug": "kaziranga",
+		"name": "Kaziranga National Park",
+		"category": "Kaziranga National Park",
+		"count": 5
+	},
+	{
+		"slug": "keoladeo",
+		"name": "Keoladeo National Park",
+		"category": "Keoladeo National Park",
+		"count": 5
+	},
+	{
+		"slug": "manas",
+		"name": "Manas Wildlife Sanctuary",
+		"category": "Manas National Park",
+		"count": 4
+	},
+	{
+		"slug": "sundarbans",
+		"name": "Sundarbans National Park",
+		"category": "Sundarbans National Park",
+		"search": "Sundarbans India mangrove",
+		"count": 5
+	},
+	{
+		"slug": "nanda-devi",
+		"name": "Nanda Devi and Valley of Flowers",
+		"category": "Valley of Flowers National Park",
+		"search": "Nanda Devi",
+		"count": 5
+	},
+	{
+		"slug": "western-ghats",
+		"name": "Western Ghats",
+		"category": "Western Ghats",
+		"count": 5
+	},
+	{
+		"slug": "great-himalayan",
+		"name": "Great Himalayan National Park",
+		"category": "Great Himalayan National Park",
+		"search": "Great Himalayan National Park Himachal",
+		"count": 4
+	},
+	{
+		"slug": "khangchendzonga",
+		"name": "Khangchendzonga National Park",
+		"category": "Khangchendzonga National Park",
+		"search": "Kanchenjunga Sikkim",
+		"count": 5
+	},
+	{
+		"slug": "sarnath",
+		"name": "Sarnath",
+		"category": "Sarnath",
+		"count": 5
+	},
+	{
+		"slug": "meenakshi",
+		"name": "Meenakshi Amman Temple",
+		"category": "Meenakshi Amman Temple",
+		"count": 5
+	},
+	{
+		"slug": "art-bharatanatyam",
+		"name": "bharatanatyam",
+		"dir": "arts",
+		"category": "Bharatanatyam",
+		"search": "Bharatanatyam",
+		"count": 4,
+		"allowPortrait": true
+	},
+	{
+		"slug": "art-kathak",
+		"name": "kathak",
+		"dir": "arts",
+		"category": "Kathak",
+		"search": "Kathak dance",
+		"count": 4,
+		"allowPortrait": true
+	},
+	{
+		"slug": "art-kathakali",
+		"name": "kathakali",
+		"dir": "arts",
+		"category": "Kathakali",
+		"search": "Kathakali",
+		"count": 4,
+		"allowPortrait": true
+	},
+	{
+		"slug": "art-kuchipudi",
+		"name": "kuchipudi",
+		"dir": "arts",
+		"category": "Kuchipudi",
+		"search": "Kuchipudi dance",
+		"count": 4,
+		"allowPortrait": true
+	},
+	{
+		"slug": "art-odissi",
+		"name": "odissi",
+		"dir": "arts",
+		"category": "Odissi",
+		"search": "Odissi dance",
+		"count": 4,
+		"allowPortrait": true
+	},
+	{
+		"slug": "art-manipuri",
+		"name": "manipuri",
+		"dir": "arts",
+		"category": "Manipuri dance",
+		"search": "Manipuri dance Ras Leela",
+		"count": 4,
+		"allowPortrait": true
+	},
+	{
+		"slug": "art-mohiniyattam",
+		"name": "mohiniyattam",
+		"dir": "arts",
+		"category": "Mohiniyattam",
+		"search": "Mohiniyattam",
+		"count": 4,
+		"allowPortrait": true
+	},
+	{
+		"slug": "art-sattriya",
+		"name": "sattriya",
+		"dir": "arts",
+		"category": "Sattriya",
+		"search": "Sattriya dance Assam",
+		"count": 4,
+		"allowPortrait": true
+	},
+	{
+		"slug": "era-indus-valley",
+		"name": "indus-valley",
+		"dir": "timeline",
+		"category": "Indus Valley Civilisation",
+		"search": "Mohenjo-daro ruins",
+		"count": 4
+	},
+	{
+		"slug": "era-vedic-period",
+		"name": "vedic-period",
+		"dir": "timeline",
+		"category": "Rigveda",
+		"search": "Rigveda manuscript",
+		"count": 4
+	},
+	{
+		"slug": "era-mauryan-empire",
+		"name": "mauryan-empire",
+		"dir": "timeline",
+		"category": "Edicts of Ashoka",
+		"search": "Ashoka pillar Sarnath capital",
+		"count": 4
+	},
+	{
+		"slug": "era-gupta-period",
+		"name": "gupta-period",
+		"dir": "timeline",
+		"category": "Gupta art",
+		"search": "Gupta period sculpture India",
+		"count": 4
+	},
+	{
+		"slug": "era-chola-dynasty",
+		"name": "chola-dynasty",
+		"dir": "timeline",
+		"category": "Chola art",
+		"search": "Chola bronze Nataraja",
+		"count": 4
+	},
+	{
+		"slug": "era-delhi-sultanate",
+		"name": "delhi-sultanate",
+		"dir": "timeline",
+		"category": "Delhi Sultanate",
+		"search": "Tughlaqabad Fort Delhi",
+		"count": 4
+	},
+	{
+		"slug": "era-mughal-empire",
+		"name": "mughal-empire",
+		"dir": "timeline",
+		"category": "Mughal architecture",
+		"search": "Mughal miniature painting",
+		"count": 4
+	},
+	{
+		"slug": "era-independence",
+		"name": "independence",
+		"dir": "timeline",
+		"category": "Indian independence movement",
+		"search": "Ashoka Chakra Indian flag",
+		"count": 4
+	}
+]
