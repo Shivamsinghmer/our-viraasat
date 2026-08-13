@@ -31,15 +31,27 @@ export function Reveal({
 		const el = ref.current;
 		if (!el) return;
 
+		// Readers who ask for less motion still get the content; they just get it
+		// without the rise. Checked before the tween is built rather than inside
+		// it, so nothing is ever set to autoAlpha 0 and left waiting on a
+		// ScrollTrigger that will not fire.
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
 		registerPluginOnce(ScrollTrigger);
 
 		const ctx = gsap.context(() => {
+			// `opacity`, deliberately not `autoAlpha`. autoAlpha also sets
+			// `visibility: hidden`, and Chrome will not start a `loading="lazy"`
+			// image inside a hidden subtree — so every photograph below the fold
+			// waited for its own reveal to fire before it began downloading, and
+			// arrived late. Opacity alone hides the element without stalling the
+			// fetch, so the image is already decoded by the time it rises in.
 			gsap.fromTo(
 				el,
-				{ y: distance, autoAlpha: 0 },
+				{ y: distance, opacity: 0 },
 				{
 					y: 0,
-					autoAlpha: 1,
+					opacity: 1,
 					duration: 0.8,
 					delay,
 					ease: "power3.out",
